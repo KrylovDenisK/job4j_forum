@@ -26,10 +26,10 @@
     </script>
 </head>
 <body>
-<nav class="navbar navbar-fixed-top navbar-dark bg-dark">
+<nav class="navbar navbar-fixed-top navbar-light" style="background-color: #e3f2fd;">
     <a href="<c:url value="/"/>" class="navbar-brand">Forum</a>
     <div class="navbar-nav">
-        <a class="nav-item nav-link" href="/" id="user"></a>
+        <a class="nav-item nav-link" href="<c:url value="/logout"/>" id="user">ВЫЙТИ: ${user}</a>
     </div>
 </nav>
 <div class="container mt-3">
@@ -47,12 +47,11 @@
     <br>
     <div class="row">
         <table class="table table-bordered">
-            <thead>
+            <thead class="text-center">
             <tr>
-                <th scope="col">Тема</th>
+                <th>Тема</th>
+                <th>Описание</th>
                 <th>Владелец</th>
-                <th>Кол-во сообщений</th>
-                <th>Последнее сообщение</th>
             </tr>
             </thead>
             <tbody>
@@ -63,9 +62,8 @@
                             <i class="fa fa-edit mr-3"></i></a>
                         <a href="<c:out value="/comments/comments?tId=${topic.id}"/>">${topic.name}</a>
                     </td>
-                    <td>Владелец</td>
-                    <td>Кол-во сообщений</td>
-                    <td>Последнее сообщение</td>
+                    <td class="text-center">${topic.desc}</td>
+                    <td class="text-center">${topic.author.username}</td>
                 </tr>
             </c:forEach>
             </tbody>

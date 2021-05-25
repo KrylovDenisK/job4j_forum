@@ -21,30 +21,41 @@
     <title>Форум job4j</title>
 </head>
 <body>
-<nav class="navbar navbar-fixed-top navbar-dark bg-dark">
+<nav class="navbar navbar-fixed-top navbar-light" style="background-color: #e3f2fd;">
     <a href="" class="navbar-brand">Forum</a>
     <div class="navbar-nav">
-        <a class="nav-item nav-link" href="/" id="user"></a>
+        <a class="nav-item nav-link" href="<c:url value="/logout"/> " id="user">ВЫЙТИ: ${user}</a>
     </div>
 </nav>
 
 <div class="container mt-3">
-    <div class="row text-center">
+    <div class="row сol-12 text-center">
         <h4>Тема: ${topic}</h4>
     </div>
     <br>
-    <c:forEach items="${comments}" var="comment">
-    <div class="row">
-        ${comment.created}------${author} написал:  ${comment.text}
-    </div>
-        <br>
-    </c:forEach>
+    <table class="table table-bordered">
+        <thead class="text-center">
+        <tr>
+            <th>Комментарий</th>
+            <th>Автор</th>
+            <th>Дата создания</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${comments}" var="comment">
+            <tr>
+                <td>${comment.text}</td>
+                <td class="text-center">${comment.author.username}</td>
+                <td class="text-center">${comment.getCreatedFormat()}</td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
     <br>
-    <div class="row text-center">
-        <div class="col-12">
+    <div class="row justify-content-center text-center">
+        <div class="col-6">
             <form action="<c:url value="/comments/save?tId=${tId}"/>" method="POST">
                 <div class="form-group">
-                    <label for="text" class="col-form-label">Комментарий:</label>
                     <textarea class="form-control" id="text" name="text" placeholder="Введите комментарий"></textarea>
                 </div>
                 <div class="form-group text-center">

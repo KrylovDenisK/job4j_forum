@@ -2,7 +2,9 @@ package ru.job4j.forum.service;
 
 import org.springframework.stereotype.Service;
 import ru.job4j.forum.model.Post;
+import ru.job4j.forum.model.User;
 import ru.job4j.forum.repository.PostRepository;
+import ru.job4j.forum.repository.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,11 +12,10 @@ import java.util.List;
 @Service
 public class PostService {
     private PostRepository postRepository;
-    private UserService userService;
 
-    public PostService(PostRepository postRepository, UserService userService) {
+    public PostService(PostRepository postRepository) {
         this.postRepository = postRepository;
-        this.userService = userService;
+        //this.userRepository = userRepository;
     }
 
     public List<Post> getAll() {
@@ -24,11 +25,10 @@ public class PostService {
     }
 
     public void save(Post post) {
-       post.setAuthor(userService.findById(3));
        postRepository.save(post);
     }
 
-    public Post getPostById(Integer id) {
-        return postRepository.findById(id).orElse(new Post());
+    public Post findById(Integer id) {
+        return postRepository.findById(id).orElse(null);
     }
 }

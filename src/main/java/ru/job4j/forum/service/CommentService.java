@@ -10,13 +10,12 @@ import java.util.List;
 @Service
 public class CommentService {
     private CommentRepository commentRepository;
-    private TopicService topicService;
-    private UserService userService;
+//    private TopicService topicService;
+//    private UserService userService;
 
-    public CommentService(CommentRepository commentRepository, TopicService topicService, UserService userService) {
+
+    public CommentService(CommentRepository commentRepository) {
         this.commentRepository = commentRepository;
-        this.topicService = topicService;
-        this.userService = userService;
     }
 
     public List<Comment> getAll() {
@@ -25,9 +24,7 @@ public class CommentService {
         return comments;
     }
 
-    public void save(Comment comment, Integer tId) {
-        comment.setTopic(topicService.findById(tId));
-        comment.setAuthor(userService.findById(3));
+    public void save(Comment comment) {
         commentRepository.save(comment);
     }
 

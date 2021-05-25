@@ -18,7 +18,7 @@
     <title>Сообщение</title>
 </head>
 <body>
-<nav class="navbar navbar-fixed-top navbar-dark bg-dark">
+<nav class="navbar navbar-fixed-top navbar-light" style="background-color: #e3f2fd;">
     <a href="" class="navbar-brand">Forum</a>
     <div class="navbar-nav">
         <a class="nav-item nav-link" href="/" id="user">Выйти: ${user}</a>

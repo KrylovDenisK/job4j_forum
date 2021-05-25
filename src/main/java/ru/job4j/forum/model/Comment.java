@@ -1,5 +1,7 @@
 package ru.job4j.forum.model;
 
+import ru.job4j.forum.logic.DateFormatter;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -53,6 +55,10 @@ public class Comment {
 
     public void setCreated(LocalDateTime created) {
         this.created = created;
+    }
+
+    public String getCreatedFormat() {
+        return DateFormatter.parse(created);
     }
 
     public User getAuthor() {

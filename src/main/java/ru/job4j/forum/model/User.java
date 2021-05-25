@@ -1,6 +1,7 @@
 package ru.job4j.forum.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 
 
@@ -62,6 +63,12 @@ public class User {
         return roles;
     }
 
+    public void addRole(Role role) {
+        if (roles == null) {
+            roles = new ArrayList<>();
+        }
+        roles.add(role);
+    }
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
     }

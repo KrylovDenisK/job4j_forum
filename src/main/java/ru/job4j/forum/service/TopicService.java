@@ -9,13 +9,11 @@ import ru.job4j.forum.repository.TopicRepository;
 @Service
 public class TopicService {
     private TopicRepository topicRepository;
-    private PostRepository postRepository;
-    private UserService userService;
+    //private UserService userService;
 
-    public TopicService(TopicRepository topicRepository, PostRepository postRepository, UserService userService) {
+    public TopicService(TopicRepository topicRepository) {
         this.topicRepository = topicRepository;
-        this.postRepository = postRepository;
-        this.userService = userService;
+        //this.userService = userService;
     }
 
 //    public List<Topic> findTopicsByPostId(Integer id) {
@@ -24,12 +22,8 @@ public class TopicService {
 //        return topics;
 //    }
 
-    public void saveOrUpdate(Topic topic, Integer pId) {
-        topic.setAuthor(userService.findById(3));
-        postRepository.findById(pId).ifPresent(x -> {
-            topic.setPost(x);
-            topicRepository.save(topic);
-        });
+    public void saveOrUpdate(Topic topic) {
+        topicRepository.save(topic);
     }
 
     public void save(Topic topic) {
