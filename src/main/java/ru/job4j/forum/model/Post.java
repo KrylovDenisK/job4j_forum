@@ -20,6 +20,9 @@ public class Post {
     @JoinColumn(name = "author_id")
     private User author;
 
+    public Post() {
+    }
+
     public static Post of(Integer id, String name, List<Topic> topics) {
         Post post = new Post();
         post.id = id;
@@ -28,6 +31,11 @@ public class Post {
         return post;
     }
 
+    public static Post of(String name) {
+        Post post = new Post();
+        post.name = name;
+        return post;
+    }
     public void addTopic(Topic topic) {
         if (topics == null) {
             topics = new ArrayList<>();

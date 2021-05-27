@@ -28,11 +28,12 @@ public class Topic {
     public Topic() {
     }
 
-    public static Topic of(Integer id, String name, List<Comment> comments) {
+    public static Topic of(Integer id, String name, List<Comment> comments, Post post) {
         Topic topic = new Topic();
         topic.id = id;
         topic.name = name;
         topic.comments = comments;
+        topic.post = post;
         return topic;
     }
 
