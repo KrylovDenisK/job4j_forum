@@ -15,6 +15,7 @@ import ru.job4j.forum.service.TopicService;
 
 import java.util.ArrayList;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -34,7 +35,7 @@ public class CommentControllerTest {
     @WithMockUser
     public void shouldReturnDefaultMessage() throws Exception {
         Topic topic = Topic.of(1, "Тема", new ArrayList<>(), Post.of("Раздел"));
-        Mockito.when(topicService.findById(1)).thenReturn(topic);
+        Mockito.when(topicService.findById(any())).thenReturn(topic);
         this.mockMvc.perform(get("/comments/comments").param("tId", "1"))
                 .andDo(print())
                 .andExpect(status().isOk())

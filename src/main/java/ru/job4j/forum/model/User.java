@@ -21,9 +21,9 @@ public class User {
     @Column(name = "enabled")
     private boolean enable;
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "users_roles"
-            , joinColumns = @JoinColumn(name = "username_id")
-            , inverseJoinColumns = @JoinColumn(name = "role_id")
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "username_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Collection<Role> roles;
 
