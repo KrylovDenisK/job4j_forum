@@ -2,9 +2,6 @@ language: java
 jdk:
   - openjdk14
 
-services:
-  - postgresql
-
 sudo: false
 
 after_success:
