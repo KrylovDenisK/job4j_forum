@@ -10,11 +10,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import ru.job4j.forum.Job4jForumApplication;
-import ru.job4j.forum.model.User;
-import ru.job4j.forum.service.UserService;
-
-import static org.junit.Assert.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
+import ru.job4j.forum.model.Post;
+import ru.job4j.forum.service.PostService;
+import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -23,32 +21,41 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest(classes = Job4jForumApplication.class)
 @AutoConfigureMockMvc
-public class RegControllerTest {
+public class PostControllerTest {
+    @MockBean
+    private PostService postService;
     @Autowired
     private MockMvc mockMvc;
-    @MockBean
-    private UserService userService;
 
     @Test
     @WithMockUser
-    public void returnDefaultTopics() throws Exception  {
-        mockMvc.perform(get("/reg"))
+    public void whenGetMethodCreatePost() throws Exception {
+        mockMvc.perform(get("/post/create"))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful())
-                .andExpect(view().name("auth/reg"));
+                .andExpect(view().name("post/save"));
     }
 
     @Test
     @WithMockUser
-    public void whenPostMethodSaveTopic() throws Exception {
-        Mockito.when(userService.userVerification(any())).thenReturn(true);
-        mockMvc.perform(
-                post("/reg")
-                        .param("username", "root"))
+    public void whenPostMethodCreatePost() throws Exception {
+        mockMvc.perform(post("/post/save").param("name", "Java Core"))
                 .andDo(print())
                 .andExpect(status().is3xxRedirection());
-        ArgumentCaptor<User> argumentCaptor = ArgumentCaptor.forClass(User.class);
-        Mockito.verify(userService).createUser(argumentCaptor.capture());
-        assertEquals(argumentCaptor.getValue().getUsername(), "root");
+        ArgumentCaptor<Post> argumentCaptor = ArgumentCaptor.forClass(Post.class);
+        Mockito.verify(postService).save(argumentCaptor.capture());
+        assertEquals(argumentCaptor.getValue().getName(), "Java Core");
     }
+
+    @Test
+    @WithMockUser
+    public void whenGetMethodEditPost() throws Exception {
+        mockMvc.perform(get("/post/edit").param("id", "1"))
+                .andDo(print())
+                .andExpect(status().is2xxSuccessful())
+                .andExpect(view().name("post/update"));
+    }
+
+
+
 }

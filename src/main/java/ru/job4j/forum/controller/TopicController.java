@@ -59,10 +59,4 @@ public class TopicController {
         model.addAttribute("user", principal.getName());
         return "topic/update";
     }
-
-//    @PostMapping("/edit")
-//    public String editTopic(@ModelAttribute Topic topic, @RequestParam("pId") Integer pId) {
-//        topicService.save(topic);
-//        return "/topics/topics";
-//    }
 }
