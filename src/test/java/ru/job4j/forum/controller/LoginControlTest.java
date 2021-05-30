@@ -24,7 +24,7 @@ public class LoginControlTest {
         mockMvc.perform(get("/login"))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful())
-                .andExpect(view().name("/auth/login"));
+                .andExpect(view().name("auth/login"));
     }
 
     @Test
