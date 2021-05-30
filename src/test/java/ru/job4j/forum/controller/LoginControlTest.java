@@ -27,15 +27,4 @@ public class LoginControlTest {
                 .andExpect(view().name("auth/login"));
     }
 
-    @Test
-    public void connectToLogin() throws Exception {
-        mockMvc.perform(formLogin().user("root").password("root"))
-                .andDo(print())
-                .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/"));
-    }
-
-
-
-
 }
