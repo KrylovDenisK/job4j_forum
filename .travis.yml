@@ -2,7 +2,8 @@ language: java
 jdk:
   - openjdk14
 
-
+install: true
+script: mvn clean package -DskipTests=true
 services:
   - postgresql
 
