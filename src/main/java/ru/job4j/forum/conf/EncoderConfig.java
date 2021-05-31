@@ -15,4 +15,14 @@ public class EncoderConfig {
     public PasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
+    @Bean
+    public SpringLiquibase liquibase(@Qualifier("dataSource") DataSource ds) {
+        SpringLiquibase liquibase = new SpringLiquibase();
+        liquibase.setChangeLog("classpath:db/changelog/db.changeLog-master.xml");
+        liquibase.setDataSource(ds);
+        return liquibase;
+    }
+
+
 }
