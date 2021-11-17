@@ -53,18 +53,18 @@
     </table>
     <br>
     <div class="row justify-content-center text-center">
-        <div class="col-6">
-            <form action="<c:url value="/comments/save?tId=${tId}"/>" method="POST">
-                <div class="form-group">
-                    <textarea class="form-control" id="text" name="text" placeholder="Введите комментарий"></textarea>
-                </div>
-                <div class="form-group text-center">
-                    <input type="submit" class="btn btn-primary" name="create" value="Отправить"/>
-                </div>
-            </form>
-        </div>
+            <div class="col-6">
+                <form action="<c:url value="/comments/save?tId=${tId}"/>" method="POST">
+                    <div class="form-group">
+                        <textarea class="form-control" id="text" name="text" placeholder="Введите комментарий"></textarea>
+                    </div>
+                    <div class="form-group text-center">
+                        <input type="submit" class="btn btn-primary" name="create" value="Отправить"/>
+                    </div>
+                </form>
+            </div>
     </div>
-</div>
 
+</div>
 </body>
 </html>
